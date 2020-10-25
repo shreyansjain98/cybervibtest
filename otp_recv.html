@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Recieve OTP</title>
+</head>
+<body>
+	<img src="morse_pic.png">
+	<button onclick="beep()">
+		Play Audio OTP
+	</button>
+	<button onclick="vibrate()">
+		Play Vibrate OTP
+	</button>
+
+</body>
+
+<script>
+	function beep(){
+        console.log("Hello");
+		var q = "010101011";
+
+		var audio0 = new Audio("beep0.mp3");
+		var audio1 = new Audio("beep1.mp3");
+		
+		for(var i=0; i<q.length; i++){
+			var tmp=q[i];
+			if(tmp=="0"){
+				setTimeout(function(){audio0.play();},1.5*i*500);
+			}
+			if(tmp=="1"){
+				setTimeout(function(){audio1.play();},1.5*i*500);
+			}
+			if(tmp=="-"){
+				setTimeout(function(){},1.5*i*500);
+			}
+		}
+	}
+
+	function vibrate(){
+        console.log("vibrate");
+		var q = "010101011";
+		var b= document.getElementsByTagName("body")[0];
+		console.log(b);
+
+		//var audio0 = new Audio("beep0.mp3");
+		//var audio1 = new Audio("beep1.mp3");
+		
+		for(var i=0; i<q.length; i++){
+			var tmp=q[i];
+			if(tmp=="0"){
+				setTimeout(function(){window.navigator.vibrate(200);},1.5*i*500);
+
+			}
+			if(tmp=="1"){
+				setTimeout(function(){window.navigator.vibrate(700);},1.5*i*500);
+			}
+			if(tmp=="-"){
+				setTimeout(function(){},1.5*i*500);
+			}
+		}
+	}
+</script>
+</html>
