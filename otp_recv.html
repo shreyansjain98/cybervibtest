@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Recieve OTP</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet"> 
+	<style type="text/css">
+		body{
+			background-color: black;
+			margin:0;
+		}
+		.morseref{
+			width:90%;
+			margin:0 auto;
+			margin-top:20px;
+			display:block;
+			border:3px solid red;
+		}
+		.otp_recv{
+			color:white;
+		}
+		.buttons{
+			width:90%;
+			margin:0 auto;
+			display:block;
+		}
+		.audiobutton, .vibratebutton, .verifybutton, .genbutton{
+			width:45%;
+			margin-top: 20px;
+			padding:5px;
+			display: inline-block;
+			background-color: black;
+			border:3px solid red;
+			color:white;
+			font-size: 15px;
+		}
+		.audiobutton{
+			margin-right:10px;
+		}
+		.vibratebutton{
+			margin-left:10px;
+		}
+		.audiobutton span, .vibratebutton span, .verifybutton span, .genbutton span{
+			vertical-align: middle;
+			/*padding-right: 5px;*/
+		}
+		.nav{
+			background-color: white;
+			/*margin-bottom: 20px; */
+		}
+		.nav img{
+			height:60px;
+			padding-left: 20px;
+		}
+		.navhead{
+			font-family: 'Krona One', sans-serif;
+			vertical-align: top;
+			font-size:20px;
+			display:inline-block;
+			padding-left: 20px;
+		}
+		.input{
+			border:3px solid red;
+			margin-top: 20px;
+			height:20px;
+		}
+		.verif_success{
+			color:green;
+		}
+		.verif_failed{
+			color:red;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="nav"><img src="logo.png"><p class="navhead">MORSECURE</p></div>
+
+
+	<div class="buttons">
+	<button class="genbutton" onclick="">
+		<span class="material-icons">get_app</span>Get OTP
+	</button>
+	<span class="otp_recv">Done!</span>
+	</div>
+
+
+	<img class="morseref" src="morse_pic.jpg">
+
+
+	<div class="buttons">
+
+	<button class="audiobutton" onclick="beep()">
+		<span class="material-icons">campaign</span>Audio OTP
+	</button>
+
+	<button class="vibratebutton" onclick="vibrate()">
+		<span class="material-icons">vibration</span>Vibrate OTP
+	</button>
+
+	</div>
+
+
+	<div class="buttons">
+
+		<input class="input" type="text" name="enter_otp">
+
+	<button class="verifybutton" onclick="">
+		<span class="material-icons">done_outline</span>Verify OTP
+	</button>	
+	<span class="verif_success">Success!</span>
+	<span class="verif_failed">Failed!</span>
+	</div>
+
+</body>
+
+<script>
+	function beep(){
+        console.log("Hello");
+		var q = "010101011";
+
+		var audio0 = new Audio("beep0.mp3");
+		var audio1 = new Audio("beep1.mp3");
+		
+		for(var i=0; i<q.length; i++){
+			var tmp=q[i];
+			if(tmp=="0"){
+				setTimeout(function(){audio0.play();},1.5*i*500);
+			}
+			if(tmp=="1"){
+				setTimeout(function(){audio1.play();},1.5*i*500);
+			}
+			if(tmp=="-"){
+				setTimeout(function(){},1.5*i*500);
+			}
+		}
+	}
+
+	function vibrate(){
+        console.log("vibrate");
+		var q = "010101011";
+		var b= document.getElementsByTagName("body")[0];
+		console.log(b);
+
+		//var audio0 = new Audio("beep0.mp3");
+		//var audio1 = new Audio("beep1.mp3");
+		
+		for(var i=0; i<q.length; i++){
+			var tmp=q[i];
+			if(tmp=="0"){
+				setTimeout(function(){window.navigator.vibrate(200);},1.5*i*500);
+
+			}
+			if(tmp=="1"){
+				setTimeout(function(){window.navigator.vibrate(700);},1.5*i*500);
+			}
+			if(tmp=="-"){
+				setTimeout(function(){},1.5*i*500);
+			}
+		}
+	}
+</script>
+</html>
